@@ -1,0 +1,4 @@
+--patch-module
+mycompany.sikasir=_
+--add-reads
+mycompany.sikasir=ALL-UNNAMED
