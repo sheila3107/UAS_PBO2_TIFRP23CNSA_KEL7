@@ -31,89 +31,98 @@ Hingga saat ini, banyak warung kecil dan usaha rumahan yang masih melakukan penc
 
 Aplikasi ini dibangun dengan mengimplementasikan empat pilar utama OOP:
 
-1.  **Encapsulation (Enkapsulasi)**: Konsep ini diterapkan dengan menyembunyikan data (variabel) di dalam kelas dan menyediakan method public (getter dan setter) untuk mengakses atau mengubahnya.
-   public class StockItem {
-    // Variabel-variabel ini dideklarasikan sebagai private atau private final
-    // sehingga tidak bisa diakses langsung dari luar kelas.
-    private final IntegerProperty id;
-    private final StringProperty name;
-    private final IntegerProperty quantity;
+1. Encapsulation (Enkapsulasi)
+Konsep ini diterapkan dengan menyembunyikan data (variabel) di dalam kelas dan menyediakan method public (getter dan setter) untuk mengakses atau mengubahnya.
+
+public class StockItem { 
+    // Variabel-variabel ini dideklarasikan sebagai private atau private final 
+    // sehingga tidak bisa diakses langsung dari luar kelas. 
+    private final IntegerProperty id; 
+    private final StringProperty name; 
+    private final IntegerProperty quantity; 
     private final DoubleProperty price;
 
-    public StockItem(int id, String name, int quantity, double price) {
-        this.id = new SimpleIntegerProperty(id);
-        this.name = new SimpleStringProperty(name);
-        this.quantity = new SimpleIntegerProperty(quantity);
-        this.price = new SimpleDoubleProperty(price);
+    public StockItem(int id, String name, int quantity, double price) { 
+        this.id = new SimpleIntegerProperty(id); 
+        this.name = new SimpleStringProperty(name); 
+        this.quantity = new SimpleIntegerProperty(quantity); 
+        this.price = new SimpleDoubleProperty(price); 
     }
 
-    // Method public "getter" untuk mengakses data
-    public int getId() { return id.get(); }
-    public String getName() { return name.get(); }
-    public int getQuantity() { return quantity.get(); }
+    // Method public "getter" untuk mengakses data 
+    public int getId() { return id.get(); } 
+    public String getName() { return name.get(); } 
+    public int getQuantity() { return quantity.get(); } 
     public double getPrice() { return price.get(); }
 
-    // Method public "setter" untuk mengubah data
-    public void setId(int id) { this.id.set(id); }
-    public void setName(String name) { this.name.set(name); }
-    public void setQuantity(int quantity) { this.quantity.set(quantity); }
-    public void setPrice(double price) { this.price.set(price); }
+    // Method public "setter" untuk mengubah data 
+    public void setId(int id) { this.id.set(id); } 
+    public void setName(String name) { this.name.set(name); } 
+    public void setQuantity(int quantity) { this.quantity.set(quantity); } 
+    public void setPrice(double price) { this.price.set(price); } 
 }
-2.  **Inheritance (Pewarisan)**: Pewarisan terjadi ketika sebuah kelas mewarisi properti dan method dari kelas lain. Dalam aplikasi JavaFX, ini sering terlihat pada kelas-kelas View atau Controller.
-   // Kelas `App` mewarisi properti dan method dari kelas `Application`
-public class App extends Application {
-    @Override
-    public void start(Stage primaryStage) {
-        // ... (kode implementasi)
+
+2. Inheritance (Pewarisan)
+Pewarisan terjadi ketika sebuah kelas mewarisi properti dan method dari kelas lain. Dalam aplikasi JavaFX, ini sering terlihat pada kelas-kelas View atau Controller. App adalah subclass yang mewarisi method dari Application sebagai superclass. Method start() adalah contoh method yang di-override dari Application.
+
+// Kelas App mewarisi properti dan method dari kelas Application 
+public class App extends Application { 
+    @Override 
+    public void start(Stage primaryStage) { 
+        // ... (kode implementasi) 
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+    public static void main(String[] args) { 
+        launch(args); 
+    } 
 }
-  App adalah subclass yang mewarisi method dari Application sebagai superclass. Method start() adalah contoh method yang di-override dari Application.
-3.  **Abstraction (Abstraksi)**: Abstraksi menyembunyikan kompleksitas detail implementasi dan hanya menunjukkan fungsionalitas yang penting. Di sini, abstraksi terlihat pada penggunaan kelas DatabaseConnection dan UserOperations.
-   public class LoginView {
-    private Stage primaryStage;
+
+3. Abstraction (Abstraksi)
+Abstraksi menyembunyikan kompleksitas detail implementasi dan hanya menunjukkan fungsionalitas yang penting. Di sini, abstraksi terlihat pada penggunaan kelas DatabaseConnection dan UserOperations.
+
+public class LoginView { 
+    private Stage primaryStage; 
     private UserOperations userOperations; // Penggunaan objek UserOperations
 
-    public VBox getView() {
-        // ...
-        loginButton.setOnAction(e -> {
-            String username = usernameField.getText();
-            String password = passwordField.getText();
-            try {
-                // Di sini, LoginView hanya 'tahu' bahwa ada method loginUser()
-                // dan tidak perlu tahu bagaimana method tersebut berinteraksi dengan database.
-                userOperations = new UserOperations();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-            if (userOperations.loginUser(username, password)) {
-                // ...
-            }
-        });
-        // ...
-    }
+    public VBox getView() { 
+        // ... 
+        loginButton.setOnAction(e -> { 
+            String username = usernameField.getText(); 
+            String password = passwordField.getText(); 
+            try { 
+                // Di sini, LoginView hanya 'tahu' bahwa ada method loginUser() 
+                // dan tidak perlu tahu bagaimana method tersebut berinteraksi dengan database. 
+                userOperations = new UserOperations(); 
+            } catch (SQLException ex) { 
+                ex.printStackTrace(); 
+            } 
+            if (userOperations.loginUser(username, password)) { 
+                // ... 
+            } 
+        }); 
+        // ... 
+    } 
 }
 
-4.  **Polymorphism (Polimorfisme)**: Polimorfisme memungkinkan method yang sama memiliki perilaku berbeda tergantung pada objek yang memanggilnya.
-   public class DatabaseConnection {
-    // ...
-    public static Connection getConnection() {
-        try {
-            // ...
-            // Method isClosed() dari interface java.sql.Connection
-            // dapat memiliki implementasi yang berbeda-beda tergantung driver-nya.
-            if (connection == null || connection.isClosed()) {
-                connection = DriverManager.getConnection(URL, USER, PASSWORD);
-                System.out.println("Reconnected to database.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return connection;
-    }
+4. Polymorphism (Polimorfisme)
+Polimorfisme memungkinkan method yang sama memiliki perilaku berbeda tergantung pada objek yang memanggilnya.
+
+public class DatabaseConnection { 
+    // ... 
+    public static Connection getConnection() { 
+        try { 
+            // ... 
+            // Method isClosed() dari interface java.sql.Connection 
+            // dapat memiliki implementasi yang berbeda-beda tergantung driver-nya. 
+            if (connection == null || connection.isClosed()) { 
+                connection = DriverManager.getConnection(URL, USER, PASSWORD); 
+                System.out.println("Reconnected to database."); 
+            } 
+        } catch (SQLException e) { 
+            e.printStackTrace(); 
+        } 
+        return connection; 
+    } 
 }
 
 
