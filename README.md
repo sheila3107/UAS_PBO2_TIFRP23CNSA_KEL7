@@ -34,8 +34,7 @@ Aplikasi ini dibangun dengan mengimplementasikan empat pilar utama OOP:
 1. **Encapsulation (Enkapsulasi)**
 Konsep ini diterapkan dengan menyembunyikan data (variabel) di dalam kelas dan menyediakan method public (getter dan setter) untuk mengakses atau mengubahnya.
 
-
-
+```java
 public class StockItem {
     private final IntegerProperty id;
     private final StringProperty name;
@@ -62,10 +61,11 @@ public class StockItem {
     public void setPrice(double price) { this.price.set(price); } 
     }
 
+```
 2. **Inheritance (Pewarisan)**
 Pewarisan terjadi ketika sebuah kelas mewarisi properti dan method dari kelas lain. Dalam aplikasi JavaFX, ini sering terlihat pada kelas-kelas View atau Controller. App adalah subclass yang mewarisi method dari Application sebagai superclass. Method start() adalah contoh method yang di-override dari Application.
 
-
+```java
 public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
@@ -75,11 +75,13 @@ public class App extends Application {
     public static void main(String[] args) {
         launch(args);
     }}
-
+```
 
 3. **Abstraction (Abstraksi)**
 Abstraksi menyembunyikan kompleksitas detail implementasi dan hanya menunjukkan fungsionalitas yang penting. Di sini, abstraksi terlihat pada penggunaan kelas DatabaseConnection dan UserOperations.
 
+
+```java
 public class LoginView {
     private Stage primaryStage;
     private UserOperations userOperations; // Penggunaan objek UserOperations
@@ -102,10 +104,11 @@ public class LoginView {
         });
         // ...
     }}
-
+```
 4. **Polymorphism (Polimorfisme)**
 Polimorfisme memungkinkan method yang sama memiliki perilaku berbeda tergantung pada objek yang memanggilnya.
 
+```java
 public class DatabaseConnection {
     // ...
     public static Connection getConnection() {
@@ -123,7 +126,7 @@ public class DatabaseConnection {
         return connection;
     }}
 
-
+```
 
 ### Teknologi yang Digunakan
 
