@@ -18,13 +18,15 @@ Hingga saat ini, banyak warung kecil dan usaha rumahan yang masih melakukan penc
   - **Logout**: Fitur untuk keluar dari sistem secara aman dan mengakhiri sesi pengguna.
 
 ### Aktor dalam Sistem
-  - **Admin**:   - Mengelola akun pengguna
-                 - Melakukan transaksi penjualan
-  	             - Melihat stok barang
-  	             - Melihat histori transaksi
-  - **Pegawai**: - Melakukan transaksi penjualan
-  	             - Melihat stok barang
-  	             - Melihat histori transaksi
+  - **Admin**:
+    - Mengelola akun pengguna
+    - Melakukan transaksi penjualan
+  	- Melihat stok barang
+  	- Melihat histori transaksi
+  - **Pegawai**:
+     - Melakukan transaksi penjualan
+  	 - Melihat stok barang
+  	 - Melihat histori transaksi
 
 
 ### Penerapan Konsep OOP
@@ -135,12 +137,14 @@ public class DatabaseConnection {
   * **Database**: \[MySQL]
   * **IDE**: \[NetBeans]
 
-
-
-
 ### Kontributor
 
   * Kelompok 7 - UAS PBO2
   * \[Luthfy Arief-23552011045]
   * \[Sheila Nur Hamidah-23552011398]
   * \[Federix Aryansyah-23552011387]
+## Demo Proyek
+<ul>
+  <li>Github: <a href="https://github.com/sheila3107/UAS_PBO2_TIFRP23CNSA_KEL7">Github</a></li>
+  <li>Youtube: <a href="https://youtu.be/BsSsSjyz6Ac?si=WoJxx_1-9WSYhstJ">Youtube</a></li>
+</ul>
